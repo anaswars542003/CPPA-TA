@@ -34,6 +34,16 @@ def private_store(c1,c3, cid):
     cnx = mysql.connector.connect(user = 'TAServer', password = '123456', 
                                   host = '127.0.0.1', 
                                   database = 'PRIVATE_ID')
+    cursor = cnx.cursor()
+
+    insert_query = ("INSERT INTO cid_store" 
+                    "VALUES (%s, %s, %s, %s, %s, %d)")
+    
+    data_cid = (cid, c1_x, c1_y, c3_x, c3_y, 1)
+    cursor.execute(insert_query, data_cid)
+    cnx.commit()
+    cursor.close()
+
     cnx.close()
 
 
