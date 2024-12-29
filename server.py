@@ -30,9 +30,6 @@ def private_store(c1,c3, cid):
     c3_x = c3.x().to_bytes(32, byteorder = 'big')
     c3_y = c3.y().to_bytes(32, byteorder = 'big')
 
-    
-
-
 
 
 def start_server():
