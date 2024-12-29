@@ -37,9 +37,17 @@ def private_store(c1,c3, cid):
     cursor = cnx.cursor()
 
     insert_query = ("INSERT INTO cid_store" 
-                    "VALUES (%s, %s, %s, %s, %s, %d)")
+                    "(cid, c1_x, c1_y, c3_x, c3_y, current_i)"
+                    "VALUES (%(cid)s, %(c1_x)s, %(c1_y)s, %(c3_x)s, %(c3_y)s, %(current_i)s)")
     
-    data_cid = (cid, c1_x, c1_y, c3_x, c3_y, 1)
+    data_cid = {
+        'cid': cid,
+        'c1_x': c1_x,
+        'c1_y': c1_y,
+        'c3_x': c3_x,
+        'c3_y': c3_y,
+        'current_i': 1
+    }
     cursor.execute(insert_query, data_cid)
     cnx.commit()
     cursor.close()
