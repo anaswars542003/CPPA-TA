@@ -30,8 +30,11 @@ def private_store(c1,c3, cid):
     c1_y = c1.y().to_bytes(32, byteorder = 'big')
     c3_x = c3.x().to_bytes(32, byteorder = 'big')
     c3_y = c3.y().to_bytes(32, byteorder = 'big')
-
-
+    
+    cnx = mysql.connector.connect(user = 'TAServer', password = '123456', 
+                                  host = '127.0.0.1', 
+                                  database = 'PRIVATE_ID')
+    cnx.close()
 
 
 
