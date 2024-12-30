@@ -6,7 +6,7 @@ import redis
 import mysql.connector
 
 HOST = '127.0.0.1'
-PORT = 12346
+PORT = 12345
 
 def publish_apkey(c1, c2):
     c1_x = c1.x().to_bytes(32, byteorder = 'big')
@@ -31,7 +31,8 @@ def private_store(c1,c3, cid):
     c3_x = c3.x().to_bytes(32, byteorder = 'big')
     c3_y = c3.y().to_bytes(32, byteorder = 'big')
     
-    cnx = mysql.connector.connect(user = 'TAServer', password = '123456', 
+    cnx = mysql.connector.connect(user = 'TAServer', 
+                                  password = '123456', 
                                   host = '127.0.0.1', 
                                   database = 'PRIVATE_ID')
     cursor = cnx.cursor()
