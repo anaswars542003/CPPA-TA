@@ -6,7 +6,7 @@ import redis
 import mysql.connector
 
 HOST = '127.0.0.1'
-PORT = 12345
+PORT = 12346
 
 def publish_apkey(c1, c2):
     c1_x = c1.x().to_bytes(32, byteorder = 'big')
