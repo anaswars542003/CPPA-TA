@@ -4,6 +4,7 @@ from ecdsa.ellipticcurve import Point
 from ecdsa.curves import SECP256k1, NIST256p
 import redis
 import mysql.connector
+import struct
 
 HOST = '127.0.0.1'
 PORT = 12346
@@ -83,7 +84,17 @@ def start_server():
             pk = Point(curve, x, y)
             mpk = msk * NIST256p.generator
             print(f"Public key recieved \npk_x:{hex(pk.x())}\npk_y:{hex(pk.y())}")
+            
             u = int("5e5205324863018f4f9454c699eb160688355046e66418647c51b302a90ffd72", 16)
+            
+            pk_bytes = x_bytes + y_bytes
+            byte_representation = struct.pack('I', 1)
+            pk_bytes += byte_representation
+            hash_result = hashlib.sha256(pk_bytes).hexdigest()
+            u = int(hash_result, 16)
+
+
+            
             c1 = u * NIST256p.generator
             c2 = (u + 1) * pk
             c3 = u * mpk + pk
